@@ -1,5 +1,7 @@
 package org.psmax.cmsbackend.Entity;
 
+import org.springframework.data.annotation.LastModifiedDate;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class UserMaster {
     private String lastName;
     private String createdBy;
     private Timestamp createdOn;
+    @LastModifiedDate
     private String lastModifiedBy;
     private Timestamp lastModifiedOn;
 
