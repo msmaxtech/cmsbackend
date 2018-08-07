@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Page {
     private int pageId;
     private String pageName;
-    private Integer order;
+    private int orderId;
     private String createdBy;
     private Timestamp createdOn;
     private String lastModifiedBy;
@@ -38,13 +38,13 @@ public class Page {
     }
 
     @Basic
-    @Column(name = "ORDER", nullable = true)
-    public Integer getOrder() {
-        return order;
+    @Column(name = "ORDER_ID", nullable = true)
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Integer order) {
-        this.order = order;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     @Basic
@@ -87,22 +87,4 @@ public class Page {
         this.lastModifiedOn = lastModifiedOn;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Page page = (Page) o;
-        return pageId == page.pageId &&
-                Objects.equals(pageName, page.pageName) &&
-                Objects.equals(order, page.order) &&
-                Objects.equals(createdBy, page.createdBy) &&
-                Objects.equals(createdOn, page.createdOn) &&
-                Objects.equals(lastModifiedBy, page.lastModifiedBy) &&
-                Objects.equals(lastModifiedOn, page.lastModifiedOn);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pageId, pageName, order, createdBy, createdOn, lastModifiedBy, lastModifiedOn);
-    }
 }

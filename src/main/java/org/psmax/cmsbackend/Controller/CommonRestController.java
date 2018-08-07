@@ -3,7 +3,11 @@ package org.psmax.cmsbackend.Controller;
 import org.psmax.cmsbackend.Entity.ClientMaster;
 import org.psmax.cmsbackend.Repository.ClientMasterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.psmax.cmsbackend.Exception.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/CommonConfig")
@@ -35,6 +39,45 @@ public class CommonRestController {
 
     }
 
+    // Get a Single Client
+    @GetMapping("/client/{id}")
+    public ClientMaster getClientById(@PathVariable(value = "id") Long clientId) {
+        return clientMasterRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("ClientMaster", "id", clientId));
+    }
+
+
+    // Update a Client
+    @PutMapping("/client/{id}")
+    public ClientMaster updateClientMaster(@PathVariable(value = "id") Long clientId,
+                           @Valid @RequestBody ClientMaster clientMasterDetails ){
+
+        ClientMaster clientMaster = clientMasterRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
+
+        clientMaster.setClientName(clientMasterDetails.getClientName());
+        clientMaster.setCity(clientMasterDetails.getCity());
+        clientMaster.setCopyRightsYear(clientMasterDetails.getCopyRightsYear());
+        clientMaster.setCountry(clientMasterDetails.getCountry());
+        clientMaster.setEmailId(clientMasterDetails.getEmailId());
+
+
+        ClientMaster updatedClient = clientMasterRepository.save(clientMaster);
+        return updatedClient;
+    }
+
+
+
+    // Delete a Client
+    @DeleteMapping("/client/{id}")
+    public ResponseEntity<?> deleteClientMaster(@PathVariable(value = "id") Long clientId) {
+        ClientMaster clientMaster = clientMasterRepository.findById(clientId)
+                .orElseThrow(() -> new ResourceNotFoundException("ClientMaster", "id", clientId));
+
+        clientMasterRepository.delete(clientMaster);
+
+        return ResponseEntity.ok().build();
+    }
 
 
 

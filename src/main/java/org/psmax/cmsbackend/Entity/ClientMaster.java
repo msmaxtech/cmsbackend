@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "client_master", schema = "psmax_cms", catalog = "")
 public class ClientMaster {
-    private int clientId;
+    private Long clientId;
     private String city;
     private String clientName;
     private String copyRightsYear;
@@ -26,11 +26,11 @@ public class ClientMaster {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "client_id", nullable = false)
-    public int getClientId() {
+    public Long getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
 
