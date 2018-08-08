@@ -60,7 +60,12 @@ public class CommonRestController {
         clientMaster.setCopyRightsYear(clientMasterDetails.getCopyRightsYear());
         clientMaster.setCountry(clientMasterDetails.getCountry());
         clientMaster.setEmailId(clientMasterDetails.getEmailId());
-
+        clientMaster.setCopyRightsYear(clientMasterDetails.getCopyRightsYear());
+        clientMaster.setFacebookLink(clientMasterDetails.getFacebookLink());
+        clientMaster.setPhoneNo(clientMasterDetails.getPhoneNo());
+        clientMaster.setStreet(clientMaster.getStreet());
+        clientMaster.setTwitterLink(clientMaster.getTwitterLink());
+        clientMaster.setWebsiteName(clientMaster.getWebsiteName());
 
         ClientMaster updatedClient = clientMasterRepository.save(clientMaster);
         return updatedClient;
