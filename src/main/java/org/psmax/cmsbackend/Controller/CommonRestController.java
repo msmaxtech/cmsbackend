@@ -52,6 +52,9 @@ public class CommonRestController {
     public ClientMaster updateClientMaster(@PathVariable(value = "id") Long clientId,
                            @Valid @RequestBody ClientMaster clientMasterDetails ){
 
+        System.out.println("clientMasterDetails.."+clientMasterDetails.getClientName());
+
+
         ClientMaster clientMaster = clientMasterRepository.findById(clientId)
                 .orElseThrow(() -> new ResourceNotFoundException("Client", "id", clientId));
 
@@ -63,10 +66,10 @@ public class CommonRestController {
         clientMaster.setCopyRightsYear(clientMasterDetails.getCopyRightsYear());
         clientMaster.setFacebookLink(clientMasterDetails.getFacebookLink());
         clientMaster.setPhoneNo(clientMasterDetails.getPhoneNo());
-        clientMaster.setStreet(clientMaster.getStreet());
-        clientMaster.setTwitterLink(clientMaster.getTwitterLink());
-        clientMaster.setWebsiteName(clientMaster.getWebsiteName());
-
+        clientMaster.setStreet(clientMasterDetails.getStreet());
+        clientMaster.setTwitterLink(clientMasterDetails.getTwitterLink());
+        clientMaster.setWebsiteName(clientMasterDetails.getWebsiteName());
+System.out.println("callingg..");
         ClientMaster updatedClient = clientMasterRepository.save(clientMaster);
         return updatedClient;
     }
